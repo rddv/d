@@ -1,0 +1,232 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.home__greeting {
+  font-family: var(--font-head);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.home__wave {
+  display: inline-block;
+  height: 0.9em;
+  width: auto;
+  vertical-align: -0.08em;
+  margin-left: 6px;
+}
+
+.home__section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.home__section-title {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-primary);
+  opacity: 0.8;
+}
+
+.message-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 140px;
+}
+
+.message-card__title {
+  font-size: 17px;
+  color: var(--text-primary);
+}
+
+.message-card__body {
+  font-size: 16px;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+/* Незламність */
+.invincibility {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.invincibility__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.invincibility__title {
+  font-family: var(--font-head);
+  font-size: 24px;
+}
+
+.invincibility__desc {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+.invincibility__chips {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.invincibility__chips img {
+  height: 26px;
+  width: auto;
+}
+
+.invincibility__chip {
+  height: 26px;
+  width: 26px;
+border-radius: 50%;
+}
+
+.circle-arrow {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-arrow.white img {
+  filter: invert(1);
+}
+
+/* Quick actions */
+.home__quick {
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 8px;
+}
+
+.quick-action {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.quick-action__circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: #000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quick-action__circle img {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1);
+}
+
+.quick-action__label {
+  font-size: 13px;
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.2;
+  word-spacing: 100vw;
+}
+
+/* Лінія Дронів */
+.drones {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.drones__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.06), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.04), transparent 50%),
+    var(--banner-bg);
+}
+
+.drones__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.08) 0 22px, transparent 23px),
+    radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.06) 0 26px, transparent 27px),
+    radial-gradient(circle at 85% 35%, rgba(255, 255, 255, 0.08) 0 20px, transparent 21px),
+    radial-gradient(circle at 30% 75%, rgba(255, 255, 255, 0.06) 0 24px, transparent 25px),
+    radial-gradient(circle at 75% 85%, rgba(255, 255, 255, 0.07) 0 22px, transparent 23px);
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}
+
+.drones__content {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px 20px 20px;
+}
+
+.drones__trident {
+  width: 72px;
+  height: 72px;
+}
+
+.drones__title {
+  font-family: var(--font-head);
+  color: #fff;
+  font-size: 36px;
+  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 1px;
+}
+
+.drones__footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 20px;
+  gap: 12px;
+}
+
+.drones__cta {
+  color: #fff;
+  font-size: 16px;
+}

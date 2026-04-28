@@ -1,0 +1,22 @@
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+  color: var(--text-primary);
+}
+
+.card--solid {
+  background: var(--card-bg-solid);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.card--dark {
+  background: var(--banner-bg);
+  color: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}

@@ -1,0 +1,46 @@
+.slider {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.slider__track {
+  display: flex;
+  transition: transform 0.3s ease;
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
+}
+
+.slider__track--dragging {
+  transition: none;
+  cursor: grabbing;
+}
+
+.slider__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding-right: 12px;
+}
+
+.slider__slide:last-child {
+  padding-right: 0;
+}
+
+.slider__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.slider__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.slider__dot.is-active {
+  background: #ffffff;
+}
