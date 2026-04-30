@@ -1,12 +1,12 @@
 .home {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
 }
 
 .home__greeting {
   font-family: var(--font-head);
-  font-size: 36px;
+  font-size: 28px;
   font-weight: 400;
   line-height: 1.1;
   color: var(--text-primary);
@@ -24,7 +24,7 @@
 .home__section {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .home__section-title {
@@ -32,23 +32,192 @@
   font-size: 15px;
   font-weight: 400;
   color: var(--text-primary);
-  opacity: 0.8;
+}
+
+/* Round arrow button */
+.round-btn {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #000;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.round-btn img {
+  width: 16px;
+  height: 16px;
+  filter: invert(1);
+}
+
+.round-btn--small {
+  width: 34px;
+  height: 34px;
+}
+
+.round-btn--small img {
+  width: 14px;
+  height: 14px;
+}
+
+/* Cashback card */
+.cashback {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 20px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.cashback__content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cashback__amount {
+  font-family: var(--font-head);
+  font-size: 22px;
+  line-height: 1;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.cashback__currency {
+  font-size: 20px;
+  letter-spacing: 0;
+}
+
+.cashback__caption {
+  font-size: 13px;
+  color: var(--text-primary);
+  opacity: 0.85;
+}
+
+.cashback__flag {
+  height: 24px;
+  width: 52px;
+  margin-top: 4px;
+}
+
+/* News slider cards */
+.news-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 210px;
+}
+
+.news-card__media {
+  height: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  letter-spacing: 6px;
+  background: linear-gradient(135deg, #f2e4c0 0%, #f7d2d6 100%);
+}
+
+.news-card--warm .news-card__media {
+  background: linear-gradient(135deg, #f5e5bc 0%, #f7d3d5 100%);
+}
+
+.news-card--cool .news-card__media {
+  background: linear-gradient(135deg, #cfe2f5 0%, #dfe9f7 100%);
+}
+
+.news-card--mint .news-card__media {
+  background: linear-gradient(135deg, #d4efd9 0%, #ecf4d7 100%);
+}
+
+.news-card--rose .news-card__media {
+  background: linear-gradient(135deg, #f5d4dc 0%, #f9e2d1 100%);
+}
+
+.news-card--sky .news-card__media {
+  background: linear-gradient(135deg, #d1e7f7 0%, #e9d9f0 100%);
+}
+
+.news-card__emoji {
+  line-height: 1;
+}
+
+.news-card__body {
+  padding: 14px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.news-card__date {
+  font-size: 12px;
+  color: var(--text-primary);
+  opacity: 0.6;
+}
+
+.news-card__title {
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+/* Popular services */
+.popular {
+  padding: 4px 0;
+}
+
+.popular__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 16px 18px;
+  background: none;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+}
+
+.popular__row--first {
+  border-top: 0;
+}
+
+.popular__row:active {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.popular__label {
+  flex: 1;
 }
 
 .message-card {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-height: 140px;
+  min-height: 106px;
 }
 
 .message-card__title {
-  font-size: 17px;
+  font-size: 13px;
   color: var(--text-primary);
 }
 
 .message-card__body {
-  font-size: 16px;
+  font-size: 14px;
   color: var(--text-primary);
   line-height: 1.35;
 }
@@ -82,9 +251,9 @@
 }
 
 .invincibility__desc {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-primary);
-  line-height: 1.4;
+  line-height: 1.3;
   opacity: 0.85;
 }
 
@@ -98,12 +267,6 @@
 .invincibility__chips img {
   height: 26px;
   width: auto;
-}
-
-.invincibility__chip {
-  height: 26px;
-  width: 26px;
-border-radius: 50%;
 }
 
 .circle-arrow {
@@ -135,8 +298,8 @@ border-radius: 50%;
 }
 
 .quick-action__circle {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   border-radius: 18px;
   background: #000;
   display: inline-flex;
@@ -151,10 +314,11 @@ border-radius: 50%;
 }
 
 .quick-action__label {
-  font-size: 13px;
+  font-size: 11px;
   color: var(--text-primary);
   text-align: center;
   line-height: 1.2;
+  opacity: 0.8;
   word-spacing: 100vw;
 }
 
@@ -228,5 +392,5 @@ border-radius: 50%;
 
 .drones__cta {
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
 }

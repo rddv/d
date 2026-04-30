@@ -1,69 +1,50 @@
-import { Children, useEffect, useRef, useState } from 'react';
+import { Children, useCallback, useEffect, useState } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 import './Slider.css';
 
-export default function Slider({ children, ariaLabel }) {
+export default function Slider({ children, ariaLabel, onChange, peek = false }) {
   const slides = Children.toArray(children);
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: peek ? 'center' : 'start',
+    containScroll: peek ? false : 'trimSnaps',
+    loop: false,
+  });
   const [index, setIndex] = useState(0);
-  const trackRef = useRef(null);
-  const dragState = useRef({ startX: 0, delta: 0, active: false });
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    const i = emblaApi.selectedScrollSnap();
+    setIndex(i);
+    onChange?.(i);
+  }, [emblaApi, onChange]);
 
   useEffect(() => {
-    if (index > slides.length - 1) setIndex(Math.max(0, slides.length - 1));
-  }, [slides.length, index]);
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+    return () => {
+      emblaApi.off('select', onSelect);
+      emblaApi.off('reInit', onSelect);
+    };
+  }, [emblaApi, onSelect]);
 
-  const goTo = (i) => {
-    const clamped = Math.max(0, Math.min(slides.length - 1, i));
-    setIndex(clamped);
-  };
-
-  const onPointerDown = (e) => {
-    dragState.current = { startX: e.clientX, delta: 0, active: true };
-    trackRef.current?.setPointerCapture?.(e.pointerId);
-    trackRef.current?.classList.add('slider__track--dragging');
-  };
-
-  const onPointerMove = (e) => {
-    if (!dragState.current.active) return;
-    dragState.current.delta = e.clientX - dragState.current.startX;
-    if (trackRef.current) {
-      trackRef.current.style.transform =
-        'translateX(calc(' + -index * 100 + '% + ' + dragState.current.delta + 'px))';
-    }
-  };
-
-  const onPointerUp = (e) => {
-    if (!dragState.current.active) return;
-    const width = trackRef.current?.offsetWidth ?? 1;
-    const threshold = width * 0.2;
-    const { delta } = dragState.current;
-    dragState.current.active = false;
-    trackRef.current?.classList.remove('slider__track--dragging');
-    if (trackRef.current) trackRef.current.style.transform = '';
-    if (delta > threshold) goTo(index - 1);
-    else if (delta < -threshold) goTo(index + 1);
-    try {
-      trackRef.current?.releasePointerCapture?.(e.pointerId);
-    } catch {
-      // already released
-    }
-  };
+  const goTo = (i) => emblaApi?.scrollTo(i);
 
   return (
-    <div className="slider" role="region" aria-label={ariaLabel}>
-      <div
-        ref={trackRef}
-        className="slider__track"
-        style={{ transform: 'translateX(' + -index * 100 + '%)' }}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
-      >
-        {slides.map((slide, i) => (
-          <div className="slider__slide" key={i}>
-            {slide}
-          </div>
-        ))}
+    <div className={'slider' + (peek ? ' slider--peek' : '')} role="region" aria-label={ariaLabel}>
+      <div className="slider__viewport" ref={emblaRef}>
+        <div className="slider__track">
+          {slides.map((slide, i) => (
+            <div
+              className={'slider__slide' + (i === index ? ' is-active' : '')}
+              key={i}
+              aria-hidden={i === index ? undefined : true}
+            >
+              {slide}
+            </div>
+          ))}
+        </div>
       </div>
       {slides.length > 1 && (
         <div className="slider__dots" role="tablist">

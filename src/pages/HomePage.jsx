@@ -4,12 +4,56 @@ import arrowIcon from '../icons/arrow.svg';
 import helloIcon from '../icons/hello.png';
 import chipAll from '../icons/home_page/chip_all.svg';
 import failedConnection from '../icons/home_page/failed_connection.svg';
-import madeInUa from '../icons/home_page/madeinua.svg';
 import smartScan from '../icons/home_page/smart_scan.svg';
 import tridentWhite from '../icons/home_page/trident_white.svg';
+import madeInUa from '../icons/home_page/madeinua.svg';
+import { USER } from '../data/user.js';
 import './HomePage.css';
 
-const USER_NAME = 'Денис';
+const CASHBACK = {
+  amount: '517.06',
+  currency: 'грн',
+  caption: 'Накопичено кешбеку за травень',
+};
+
+const NEWS = [
+  {
+    emoji: '💳❤️',
+    date: '23 квітня, 19:15',
+    title: 'Виплати ВПО у 2026: усе, що варто знати про головні зміни.',
+    tone: 'warm',
+  },
+  {
+    emoji: '📱✨',
+    date: '21 квітня, 12:40',
+    title: 'Оновлений Дія.Сканер: швидше зчитує документи та QR-коди.',
+    tone: 'cool',
+  },
+  {
+    emoji: '🇺🇦🎖️',
+    date: '18 квітня, 09:15',
+    title: 'Ветеранам додали нові послуги — подивіться повний перелік у Дії.',
+    tone: 'mint',
+  },
+  {
+    emoji: '🏥📄',
+    date: '15 квітня, 16:02',
+    title: 'Медичні довідки онлайн: тепер їх можна отримати у три кліки.',
+    tone: 'rose',
+  },
+  {
+    emoji: '🎓',
+    date: '12 квітня, 11:28',
+    title: 'Студентські е-квитки: як додати та користуватися у транспорті.',
+    tone: 'sky',
+  },
+];
+
+const POPULAR_SERVICES = [
+  { id: 'poll', label: 'Опитування' },
+  { id: 'license', label: 'Заміна водійського посвідчення' },
+  { id: 'fop-tax', label: 'Податки ФОП' },
+];
 
 const MESSAGES = [
   {
@@ -36,8 +80,9 @@ export default function HomePage() {
   return (
     <div className="home">
       <h1 className="home__greeting">
-        Привіт, {USER_NAME} <img className="home__wave" src={helloIcon} alt="" />
+        Привіт, {USER.firstName} <img className="home__wave" src={helloIcon} alt="" />
       </h1>
+    
 
       <section className="home__section">
         <h2 className="home__section-title">Нові повідомлення</h2>
@@ -97,6 +142,59 @@ export default function HomePage() {
               <img src={arrowIcon} alt="" />
             </button>
           </div>
+        </Card>
+      </section>
+      <section className="home__section">
+        <Card className="cashback">
+          <div className="cashback__content">
+            <div className="cashback__amount">
+              {CASHBACK.amount} <span className="cashback__currency">{CASHBACK.currency}</span>
+            </div>
+            <div className="cashback__caption">{CASHBACK.caption}</div>
+            <img className="cashback__flag" src={madeInUa} alt="" aria-hidden="true" />
+          </div>
+          <button className="circle-arrow" type="button" aria-label="Перейти до кешбеку">
+            <img src={arrowIcon} alt="" />
+          </button>
+        </Card>
+      </section>
+
+      <section className="home__section">
+        <h2 className="home__section-title">Що нового?</h2>
+        <Slider ariaLabel="Що нового">
+          {NEWS.map((n, i) => (
+            <Card
+              key={i}
+              variant="solid"
+              className={'news-card news-card--' + n.tone}
+            >
+              <div className="news-card__media" aria-hidden="true">
+                <span className="news-card__emoji">{n.emoji}</span>
+              </div>
+              <div className="news-card__body">
+                <div className="news-card__date">{n.date}</div>
+                <div className="news-card__title">{n.title}</div>
+              </div>
+            </Card>
+          ))}
+        </Slider>
+      </section>
+
+      <section className="home__section">
+        <h2 className="home__section-title">Популярні послуги</h2>
+        <Card variant="solid" className="popular">
+          {POPULAR_SERVICES.map((s, i) => (
+            <button
+              key={s.id}
+              type="button"
+              className={'popular__row' + (i === 0 ? ' popular__row--first' : '')}
+            >
+              <span className="popular__label">{s.label}</span>
+              <span className="round-btn round-btn--small" aria-hidden="true">
+                <img src={arrowIcon} alt="" />
+              </span>
+            </button>
+          ))}
         </Card>
       </section>
     </div>
