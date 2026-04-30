@@ -1,12 +1,12 @@
 import photo from '../icons/photo.jpg';
-import seQr from '../icons/docs_page/se_qr_d_1.png';
+import seQr from '../icons/docs_page/ku_qr_d_1.png';
 
 export const USER = {
-  firstName: 'Сергій',
-  lastName: 'Разумний',
-  patronymic: 'Андрійович',
-  birthDate: '30.06.1994',
-  rnokpp: '3451406853',
+  firstName: 'Олександр',
+  lastName: 'Діхтярук',
+  patronymic: 'Валерійович',
+  birthDate: '16.11.1988',
+  rnokpp: '3246207358',
   photo,
 };
 
